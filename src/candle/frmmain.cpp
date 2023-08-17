@@ -2655,6 +2655,8 @@ void frmMain::loadSettings()
     ui->slbSpindleOverride->setChecked(set.value("spindleOverride", false).toBool());
     ui->slbSpindleOverride->setValue(set.value("spindleOverrideValue", 100).toInt());
 
+    ui->txtMultiSendFinish->setText(set.value("lastMultiSendGCommand","M5").toString());
+
     m_settings->setUnits(set.value("units", 0).toInt());
 
     m_recentFiles = set.value("recentFiles", QStringList()).toStringList();
@@ -2906,6 +2908,8 @@ void frmMain::saveSettings()
     set.setValue("heightmapInterpolationStepY", ui->txtHeightMapInterpolationStepY->value());
     set.setValue("heightmapInterpolationType", ui->cboHeightMapInterpolationType->currentIndex());
     set.setValue("heightmapInterpolationShow", ui->chkHeightMapInterpolationShow->isChecked());
+
+    set.setValue("lastMultiSendGCommand", ui->txtMultiSendFinish->text());
 
     foreach (ColorPicker* pick, m_settings->colors()) {
         set.setValue(pick->objectName().mid(3), pick->color().name());
@@ -4520,6 +4524,7 @@ void frmMain::completeTransfer()
 
     // Show message box
     if (ui->txtCountRun->value() <= 0){
+        if (MultiStatus == true) sendCommand(QString(ui->txtMultiSendFinish->text()));
         qApp->beep();
         m_timerStateQuery.stop();
         m_timerConnection.stop();
