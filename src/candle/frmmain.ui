@@ -290,16 +290,6 @@ QLabel[overrided=&quot;false&quot;] {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget" native="true">
-           <property name="minimumSize">
-            <size>
-             <width>20</width>
-             <height>0</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_11">
            <property name="rightMargin">
             <number>0</number>
@@ -308,6 +298,9 @@ QLabel[overrided=&quot;false&quot;] {
             <spacer name="spacerBot_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -392,6 +385,9 @@ QLabel[overrided=&quot;false&quot;] {
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>40</width>
@@ -404,6 +400,12 @@ QLabel[overrided=&quot;false&quot;] {
          </item>
          <item>
           <widget class="QPushButton" name="cmdFileOpen">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTipDuration">
+            <number>-1</number>
+           </property>
            <property name="text">
             <string>Open</string>
            </property>

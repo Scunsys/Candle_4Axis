@@ -3893,6 +3893,7 @@ void frmMain::updateControlsState() {
     ui->actFileNew->setEnabled(m_senderState == SenderStopped);
     ui->actFileOpen->setEnabled(m_senderState == SenderStopped);
     ui->cmdFileOpen->setEnabled(m_senderState == SenderStopped);
+    ui->cmdFileOpen->setVisible(false);
     ui->cmdFileReset->setEnabled((m_senderState == SenderStopped) && m_programModel.rowCount() > 1);
     ui->cmdFileSend->setEnabled(portOpened && (m_senderState == SenderStopped) && m_programModel.rowCount() > 1);
     ui->cmdFileMultiSend->setEnabled(portOpened && (m_senderState == SenderStopped) && m_programModel.rowCount() > 1);
