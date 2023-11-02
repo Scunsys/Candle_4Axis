@@ -51,7 +51,6 @@ public:
     double getTraverseSpeed() const;
     void setTraverseSpeed(double traverseSpeed);
     int getCommandNumber() const;
-    QVector3D m_currentPoint;
 
 signals:
 
@@ -64,6 +63,7 @@ private:
     bool m_inAbsoluteMode;
     bool m_inAbsoluteIJKMode;
     float m_lastGcodeCommand;
+    QVector3D m_currentPoint;
     int m_commandNumber;
     PointSegment::planes m_currentPlane;
 

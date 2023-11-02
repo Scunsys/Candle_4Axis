@@ -696,7 +696,7 @@ void frmMain::on_cmdFileOpen_clicked()
         if (!saveChanges(false)) return;
 
         QString fileName  = QFileDialog::getOpenFileName(this, tr("Open"), m_lastFolder,
-                                   tr("G-Code files (*.nc *.ncc *.ngc *.tap *.txt);;All files (*.*)"));
+                                   tr("G-Code files (*.nc *.ncc *.cnc *.ngc *.tap *.txt);;All files (*.*)"));
 
         if (!fileName.isEmpty()) m_lastFolder = fileName.left(fileName.lastIndexOf(QRegExp("[/\\\\]+")));
 
@@ -3588,6 +3588,7 @@ void frmMain::loadFile(QList<QString> data)
             item.line = gp.getCommandNumber();
 
             m_programModel.data().append(item);
+
         }
 
         if (progress.isVisible() && (data.count() % PROGRESSSTEP == 0)) {

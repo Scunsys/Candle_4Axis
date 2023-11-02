@@ -182,6 +182,7 @@ PointSegment *GcodeParser::processCommand(const GCodeArgList &args)
             case 'X':
             case 'Y':
             case 'Z':
+            case 'A':
             case 'I':
             case 'J':
             case 'K':
@@ -205,16 +206,22 @@ PointSegment *GcodeParser::processCommand(const GCodeArgList &args)
         case 'X':
             if (!m_inAbsoluteMode) v += m_currentPoint.x();
             nextPoint.setX(v);
+            m_currentPoint = nextPoint;
             break;
 
         case 'Y':
             if (!m_inAbsoluteMode) v += m_currentPoint.y();
             nextPoint.setY(v);
+            m_currentPoint = nextPoint;
             break;
 
         case 'Z':
             if (!m_inAbsoluteMode) v += m_currentPoint.z();
             nextPoint.setZ(v);
+            m_currentPoint = nextPoint;
+            break;
+
+        case 'A':
             break;
 
         case 'I':
@@ -270,19 +277,19 @@ PointSegment *GcodeParser::processCommand(const GCodeArgList &args)
         else if (v == 3.0f) mmode = MOVE_G3;
     }
 
-     if (mmode == MOVE_NONE) {
-    //  return addArcPointSegment(nextPoint, mmode == MOVE_, r);
-    //    return NULL;
-        mmode = MOVE_G1;
-     }
+    if (mmode == MOVE_NONE) {
+        return NULL;
+    }
 
     switch (mmode) {
     case MOVE_G0:
     case MOVE_G1:
     case MOVE_G38_2:
         return addLinearPointSegment(nextPoint, mmode == MOVE_G0);
+
     default:
         if (haveIJK) return addArcPointSegment(nextPoint, mmode == MOVE_G2, ijkPoint);
+
         return addArcPointSegment(nextPoint, mmode == MOVE_G2, r);
     }
 }

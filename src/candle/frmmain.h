@@ -94,6 +94,7 @@ public:
     explicit frmMain(QWidget *parent = 0);
     ~frmMain();
 
+
 signals:
     void responseReceived(QString command, int tableIndex, QString response);
     void statusReceived(QString status);
